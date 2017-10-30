@@ -8,13 +8,25 @@ module.exports = (app) => {
 		scope: ['profile']
 	}));
 
-	app.get('/auth/google/callback', passport.authenticate('google'));
+	app.get(
+		'/auth/google/callback', 
+		passport.authenticate('google'),
+		(req, res) => {
+			res.redirect('/surveys');
+		}
+		);
 
 
 	// Facebook Auth
 	app.get('/auth/facebook', passport.authenticate('facebook'));
 
-	app.get('/auth/facebook/callback', passport.authenticate('facebook'));
+	app.get(
+	'/auth/facebook/callback', 
+	passport.authenticate('facebook'),
+	(req, res) => {
+		res.redirect('/surveys');
+	}
+	);
 
 
 	app.get('/api/current_user', (req, res) => {

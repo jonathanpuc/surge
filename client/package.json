@@ -6,13 +6,16 @@
     "/auth/google": {
       "target": "http://localhost:5000"
     },
+    "/auth/facebook": {
+      "target": "http://localhost:5000"
+    },
     "/api/*": {
       "target": "http://localhost:5000"
     }
   },
   "dependencies": {
     "axios": "^0.17.0",
-    "materialize-css": "^0.100.2",
+    "bootstrap": "^3.3.7",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
