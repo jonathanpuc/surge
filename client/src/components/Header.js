@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Stripe from './Stripe';
+
 class Header extends Component {
 
 	renderContent() {
@@ -8,18 +10,17 @@ class Header extends Component {
 			case null:
 				return; 
 			case false:
-				return (
-					<ul className="navbar-right">
-					<li><a href="/auth/google" className="button google-btn">Login With Google</a></li>
+				return [
+					<li><a href="/auth/google" className="button google-btn">Login With Google</a></li>,
 					<li><a href="/auth/facebook" className="button facebook-btn">Login With Facebook</a></li>
-					</ul>
-				)
+				]
+				
 			default:
-				return (
-					<ul className="navbar-right">
-					<li><a href="/api/logout" className="button logout-btn">Logout</a></li>
-					</ul>
-				)
+				return [
+					<li key="1"><Stripe/></li>,
+					<li key="2" className="credits">Credits: {this.props.auth.credits}</li>,
+					<li key="3"><a href="/api/logout" className="logout-btn">Logout</a></li>
+				]
 		}
 	}
 
@@ -34,7 +35,9 @@ class Header extends Component {
 					>
 					Surge
 					</Link>
+					<ul className="navbar-right">
 						{this.renderContent()}
+					</ul>
 				</div>
 			</nav>
 		);
